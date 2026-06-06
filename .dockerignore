@@ -1,0 +1,27 @@
+# Dependencies (rebuilt inside Docker)
+node_modules
+dashboard/node_modules
+
+# Runtime data
+data
+.wwebjs_cache
+
+# Build artifacts
+dist
+dashboard/dist
+
+# Environment (injected at runtime)
+.env
+.env.generated
+
+# Git & IDE
+.git
+.gitignore
+.vscode
+.idea
+
+# Docs & tests
+test
+README.md
+LICENSE
+CHANGELOG.md

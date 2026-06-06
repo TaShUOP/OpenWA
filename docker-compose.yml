@@ -1,0 +1,28 @@
+services:
+  openwa:
+    build: .
+    container_name: openwa
+    restart: unless-stopped
+    ports:
+      - "2785:2785"   # API + Dashboard (single port)
+    volumes:
+      - openwa-data:/app/data
+    environment:
+      - NODE_ENV=production
+      - PORT=2785
+      - DATABASE_TYPE=sqlite
+      - DATABASE_NAME=./data/openwa.sqlite
+      - DATABASE_SYNCHRONIZE=true
+      - ENGINE_TYPE=whatsapp-web.js
+      - SESSION_DATA_PATH=./data/sessions
+      - PUPPETEER_HEADLESS=true
+      - PUPPETEER_ARGS=--no-sandbox,--disable-setuid-sandbox,--disable-dev-shm-usage,--disable-gpu
+      - STORAGE_TYPE=local
+      - STORAGE_LOCAL_PATH=./data/media
+      - REDIS_ENABLED=false
+      - QUEUE_ENABLED=false
+      - CACHE_ENABLED=false
+      - CORS_ORIGINS=*
+
+volumes:
+  openwa-data:
