@@ -1,6 +1,6 @@
 # OpenWA — WhatsApp API Gateway
 
-> Open-source, self-hosted HTTP API for WhatsApp. Built with NestJS, React, and whatsapp-web.js.
+> OpenWA but without the jitters from the original repo. Open-source, self-hosted HTTP API for WhatsApp. Built with NestJS, React, and whatsapp-web.js.
 
 OpenWA exposes a RESTful API and a real-time dashboard for managing WhatsApp sessions, sending/receiving messages, managing groups, webhooks, and more — all from a single deployment.
 
