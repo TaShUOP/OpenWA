@@ -1,6 +1,7 @@
 services:
   openwa:
-    build: .
+    image: 0xtashuop/openwa-openwa:latest
+    build: .  # Used when building locally with `docker compose build`
     container_name: openwa
     restart: unless-stopped
     ports:
