@@ -39,18 +39,9 @@ The fastest way to run OpenWA. The image includes Chromium, Node.js, and the pre
 ```bash
 docker run -d \
   --name openwa \
+  --restart unless-stopped \
   -p 2785:2785 \
-  -v openwa-data:/app/data \
-  -e DATABASE_TYPE=sqlite \
-  -e DATABASE_NAME=./data/openwa.sqlite \
-  -e DATABASE_SYNCHRONIZE=true \
-  -e ENGINE_TYPE=whatsapp-web.js \
-  -e SESSION_DATA_PATH=./data/sessions \
-  -e PUPPETEER_HEADLESS=true \
-  -e "PUPPETEER_ARGS=--no-sandbox,--disable-setuid-sandbox,--disable-dev-shm-usage,--disable-gpu" \
-  -e STORAGE_TYPE=local \
-  -e STORAGE_LOCAL_PATH=./data/media \
-  -e CORS_ORIGINS=* \
+  -p 2886:2886 \
   0xtashuop/openwa:latest
 ```
 
@@ -64,29 +55,19 @@ services:
     image: 0xtashuop/openwa:latest
     container_name: openwa
     restart: unless-stopped
+
     ports:
       - "2785:2785"
-    volumes:
-      - openwa-data:/app/data
+      - "2886:2886"
+
     environment:
-      - NODE_ENV=production
-      - PORT=2785
-      - DATABASE_TYPE=sqlite
-      - DATABASE_NAME=./data/openwa.sqlite
-      - DATABASE_SYNCHRONIZE=true
-      - ENGINE_TYPE=whatsapp-web.js
-      - SESSION_DATA_PATH=./data/sessions
-      - PUPPETEER_HEADLESS=true
-      - PUPPETEER_ARGS=--no-sandbox,--disable-setuid-sandbox,--disable-dev-shm-usage,--disable-gpu
-      - STORAGE_TYPE=local
-      - STORAGE_LOCAL_PATH=./data/media
-      - REDIS_ENABLED=false
-      - QUEUE_ENABLED=false
-      - CACHE_ENABLED=false
-      - CORS_ORIGINS=*
+      NODE_ENV: development
+
+    volumes:
+      - openwa_data:/app/data
 
 volumes:
-  openwa-data:
+  openwa_data:
 ```
 
 Then run:
