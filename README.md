@@ -51,7 +51,7 @@ docker run -d \
   -e STORAGE_TYPE=local \
   -e STORAGE_LOCAL_PATH=./data/media \
   -e CORS_ORIGINS=* \
-  0xtashuop/openwa-openwa:latest
+  0xtashuop/openwa:latest
 ```
 
 ### Using Docker Compose
@@ -61,7 +61,7 @@ Create a `docker-compose.yml`:
 ```yaml
 services:
   openwa:
-    image: 0xtashuop/openwa-openwa:latest
+    image: 0xtashuop/openwa:latest
     container_name: openwa
     restart: unless-stopped
     ports:
