@@ -78,29 +78,13 @@ async function bootstrap() {
     await app.close();
   });
 
-  // Enhanced Security Headers (Phase 3 Security Audit)
+  // Security Headers (HTTP-only mode)
   app.use(
     helmet({
-      contentSecurityPolicy: {
-        directives: {
-          defaultSrc: ["'self'"],
-          styleSrc: ["'self'", "'unsafe-inline'"],
-          scriptSrc: ["'self'"],
-          imgSrc: ["'self'", 'data:', 'https:'],
-          connectSrc: ["'self'"],
-          fontSrc: ["'self'"],
-          objectSrc: ["'none'"],
-          upgradeInsecureRequests: process.env.NODE_ENV === 'production' ? [] : null,
-        },
-      },
-      hsts: {
-        maxAge: 31536000,
-        includeSubDomains: true,
-        preload: true,
-      },
+      contentSecurityPolicy: false,
+      hsts: false,
       noSniff: true,
-      referrerPolicy: { policy: 'strict-origin-when-cross-origin' },
-      // Disable for API usage
+      referrerPolicy: { policy: 'no-referrer-when-downgrade' },
       crossOriginResourcePolicy: { policy: 'cross-origin' },
     }),
   );
